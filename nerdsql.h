@@ -13,6 +13,7 @@ public:
     std::vector<Nerd> getAllNerds();
 private:
     std::string db;
+
 };
 
 #endif // NERDSQL_H

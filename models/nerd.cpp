@@ -2,20 +2,20 @@
 
 using namespace std;
 
-Nerd::Nerd(string name, string sex, string yearBorn)
+Nerd::Nerd(string newName, string newSex, string newYearBorn, string newYearDeath)
 {
-    name = name;
-    sex = sex;
-    yearBorn = yearBorn;
-    yearDied = "";
+    name = newName;
+    sex = newSex;
+    yearBorn = newYearBorn;
+    yearDeath = newYearDeath;
 }
 
-Nerd::Nerd(string name, string sex, string yearBorn, string yearDied)
+Nerd::Nerd(string newName, string newSex, string newYearBorn)
 {
-    name = name;
-    sex = sex;
-    yearBorn = yearBorn;
-    yearDied = yearDied;
+    name = newName;
+    sex = newSex;
+    yearBorn = newYearBorn;
+    yearDeath = "";
 }
 
 std::string Nerd::getName() const
@@ -35,5 +35,5 @@ std::string Nerd::getYearBorn() const
 
 std::string Nerd::getYearDied() const
 {
-    return yearDied;
+    return yearDeath;
 }

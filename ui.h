@@ -14,6 +14,7 @@ private:
     void displayAllNerds();
     void displayNerds(std::vector<Nerd> ComputerScientists);
     char cmd;
+    NerdService nerdService;
 };
 
 #endif // UI_H

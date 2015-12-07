@@ -37,7 +37,7 @@ void UI::display()
 
 void UI::displayAllNerds()
 {
-    vector<Nerd> ComputerScientists = NerdService.getAllNerds();
+    vector<Nerd> ComputerScientists = nerdService.getAllNerds();
 
     displayNerds(ComputerScientists);
 }

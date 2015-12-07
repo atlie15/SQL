@@ -9,9 +9,9 @@ NerdService::NerdService()
 
 }
 
-std::vector<Nerd> NerdService::getNerds()
+std::vector<Nerd> NerdService::getAllNerds()
 {
-    vector<Nerd> ComputerScientists = NerdSQL.getAllNerds();
+    vector<Nerd> ComputerScientists = nerdSQL.getAllNerds();
 
     return ComputerScientists;
 }

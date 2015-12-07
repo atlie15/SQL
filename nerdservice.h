@@ -11,7 +11,7 @@ public:
     NerdService();
     std::vector<Nerd> getAllNerds();
 private:
-    NerdSQL db;
+    NerdSQL nerdSQL;
 };
 
 #endif // NERDSERVICE_H

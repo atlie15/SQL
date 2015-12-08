@@ -120,6 +120,30 @@ bool NerdSQL::addScientist(Nerd nerd)
 
 bool NerdSQL::addComputer(Computer computer)
 {
+    QSqlDatabase db;
+    db = QSqlDatabase::addDatabase("QSQLITE");
+
+    QString dbName = "../SQL/Scientists.sqlite";
+    db.setDatabaseName(dbName);
+
+    db.open();
+
+    QSqlQuery query;
+
+    string name = computer.getName();
+    string type = computer.getType();
+    string yearBuilt = computer.getYearBuilt();
+    bool made = computer.getMade();
+
+    query.prepare("INSERT INTO Computers(Name, Type, YearBuilt, Made) "
+                  "VALUES (:Name, :Type, :YearBuilt, :Made)");
+    query.bindValue(":Name", QString::fromStdString(name));
+    query.bindValue(":Type", QString::fromStdString(type));
+    query.bindValue(":YearBuilt", QString::fromStdString(yearBuilt));
+    query.bindValue(":Made", made);
+    query.exec();
+    db.close();
+
     return true;
 }
 

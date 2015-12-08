@@ -28,6 +28,11 @@ std::vector<Nerd>  NerdService::searchForScientists(std::string searchTerm)
     return nerdSQL.searchForScientists(searchTerm);
 }
 
+std::vector<Computer> NerdService::searchForComputers(std::string searchTerm)
+{
+    return nerdSQL.searchForComputers(searchTerm);
+}
+
 bool NerdService::addScientist(Nerd nerd)
 {
     return nerdSQL.addScientist(nerd);

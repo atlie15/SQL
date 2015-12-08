@@ -47,7 +47,10 @@ void UI::display()
                 displayAllComputers();
             break;
         case search:
-            displayScientistSearchMenu();
+            if(isScientist)
+                displayScientistSearchMenu();
+            else
+                displayComputerSearchMenu();
             break;
         case sort:
             if(isScientist)
@@ -78,17 +81,18 @@ void UI::readInput()
 
     if (userInput == "view" && shouldTreatInputAsCommand)
     {
-        displayChoose();
-        lastCommand = sort;
+        if(displayChoose())
+            lastCommand = sort;
     }
     else if (userInput == "add" && shouldTreatInputAsCommand)
     {
-        displayChoose();
-        lastCommand = add;
+        if(displayChoose())
+            lastCommand = add;
     }
     else if (userInput == "search" && shouldTreatInputAsCommand)
     {
-        lastCommand = search;
+        if(displayChoose())
+            lastCommand = search;
     }
     else if (userInput == "back")
     {
@@ -159,7 +163,10 @@ void UI::sortCommandHandler(string userInput)
 
 void UI::searchCommandHandler(string userInput)
 {
-    displayScientists(nerdService.searchForScientists(userInput));
+    if(isScientist)
+        displayScientists(nerdService.searchForScientists(userInput));
+    else
+        displayComputers(nerdService.searchForComputers(userInput));
 }
 
 void UI::displayMenu()
@@ -193,7 +200,7 @@ void UI::displayAddComputerMenu()
     cout << "Input: ";
 }
 
-void UI::displayChoose()
+bool UI::displayChoose()
 {
     cout << "Choose whether you like to use computers or scientists" << endl;
     cout << "-----------------------------------------------------" << endl;
@@ -210,13 +217,25 @@ void UI::displayChoose()
     cout << "\n\n";
 
     if(userInput == "scientists")
+    {
         isScientist=true;
+        return true;
+    }
     else if(userInput == "computers")
+    {
         isScientist=false;
-    else if(userInput == "back ")
+        return true;
+    }
+    else if(userInput == "back")
+    {
         lastCommand = menu;
+        return false;
+    }
     else if(userInput == "quit")
+    {
         lastCommand = quit;
+        return false;
+    }
     else
     {
         cout << "Invalid option, please try again" << endl << endl;
@@ -316,6 +335,14 @@ void UI::displayComputers(std::vector<Computer> Computers)
 void UI::displayScientistSearchMenu()
 {
     cout << "Search for a scientist.\n\n";
+
+    cout << "If you would like to go back to the main menu, please type: back\n";
+    cout << "Input: ";
+}
+
+void UI::displayComputerSearchMenu()
+{
+    cout << "Search for a computer.\n\n";
 
     cout << "If you would like to go back to the main menu, please type: back\n";
     cout << "Input: ";

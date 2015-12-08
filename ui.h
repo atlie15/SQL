@@ -27,10 +27,11 @@ private:
     void displayMenu();
     void displayAddScientistMenu();
     void displayAddComputerMenu();
-    void displayChoose();
+    bool displayChoose();
     void displayAllScientists();
     void displayAllComputers();
     void displayScientistSearchMenu();
+    void displayComputerSearchMenu();
     void displayScientistSortMenu();
     void displayComputerSortMenu();
     void displayUnknownCommandMenu();

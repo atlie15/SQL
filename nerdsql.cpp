@@ -117,6 +117,42 @@ std::vector<Nerd> NerdSQL::searchForScientists(std::string searchTerm)
     return ComputerScientists;
 }
 
+std::vector<Computer> NerdSQL::searchForComputers(std::string searchTerm)
+{
+    vector<Computer> Computers;
+
+    QSqlDatabase db;
+    db = QSqlDatabase::addDatabase("QSQLITE");
+
+    QString dbName = "../SQL/Scientists.sqlite";
+    db.setDatabaseName(dbName);
+
+    db.open();
+
+    QSqlQuery query(db);
+
+    query.prepare("SELECT * FROM Computers");
+    query.bindValue("Name", QString::fromStdString("*"));
+
+    query.exec();
+
+    while(query.next()){
+        string name = query.value("Name").toString().toStdString();
+        string yearBuilt = query.value("YearBuilt").toString().toStdString();
+        string type = query.value("Type").toString().toStdString();
+        bool made = query.value("Made").toBool();
+
+        Computer pc(name, yearBuilt, type, made);
+
+        Computers.push_back(pc);
+    }
+
+    db.close();
+
+    return Computers;
+}
+
+
 bool NerdSQL::addScientist(Nerd nerd)
 {
     QSqlDatabase db;

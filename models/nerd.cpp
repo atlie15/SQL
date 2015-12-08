@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Nerd::Nerd(string newName, sexType newSex, int newYearBorn, int newYearDeath)
+Nerd::Nerd(string newName, string newSex, string newYearBorn, string newYearDeath)
 {
     name = newName;
     sex = newSex;
@@ -10,12 +10,12 @@ Nerd::Nerd(string newName, sexType newSex, int newYearBorn, int newYearDeath)
     yearDeath = newYearDeath;
 }
 
-Nerd::Nerd(string newName, sexType newSex, int newYearBorn)
+Nerd::Nerd(string newName, string newSex, string newYearBorn)
 {
     name = newName;
     sex = newSex;
     yearBorn = newYearBorn;
-    yearDeath = 0;
+    yearDeath = "";
 }
 
 std::string Nerd::getName() const
@@ -23,17 +23,17 @@ std::string Nerd::getName() const
     return name;
 }
 
-enum sexType Nerd::getSex() const
+std::string Nerd::getSex() const
 {
     return sex;
 }
 
-int Nerd::getYearBorn() const
+string Nerd::getYearBorn() const
 {
     return yearBorn;
 }
 
-int Nerd::getYearDied() const
+string Nerd::getYearDied() const
 {
     return yearDeath;
 }

@@ -34,15 +34,10 @@ std::vector<Nerd> NerdSQL::getAllScientists()
     while(query.next()){
         string name = query.value("Name").toString().toStdString();
         string gender = query.value("Gender").toString().toStdString();
-        sexType sex;
-        if (gender == "male")
-            sex = male;
-        else
-            sex = female;
-        int born = query.value("YearBorn").toInt();
-        int dead = query.value("YearDeath").toInt();
+        string yearBorn = query.value("yearBorn").toString().toStdString();
+        string yearDeath = query.value("yearDeath").toString().toStdString();
 
-        Nerd scientist(name, sex, born, dead);
+        Nerd scientist(name, gender, yearBorn, yearDeath);
 
         ComputerScientists.push_back(scientist);
     }

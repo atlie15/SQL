@@ -55,6 +55,7 @@ void UI::display()
             displayUnknownCommandMenu();
             break;
     }
+    system("CLS");
 }
 
 void UI::readInput()
@@ -220,7 +221,7 @@ void UI::displayAllComputers()
 
 void UI::displayScientists(std::vector<Nerd> ComputerScientists)
 {
-    //system("CLS");
+    system("CLS");
 
     cout << "Number\tName                          \t\tGender\t        Year born\tYear death" << endl;
     cout << "\t----------------------------------------------------------------------------------" << endl;
@@ -229,7 +230,6 @@ void UI::displayScientists(std::vector<Nerd> ComputerScientists)
     {
         string name = ComputerScientists[i].getName();
         name.resize(30, '\0');
-/*
         string gender = ComputerScientists[i].getSex();
         if(gender == "m" || gender == "M")
         {
@@ -240,19 +240,17 @@ void UI::displayScientists(std::vector<Nerd> ComputerScientists)
             gender = "Female";
         }
         gender.resize(10, '\0');
-*/
-        int yearBorn = ComputerScientists[i].getYearBorn();
-        //yearBorn.resize(9, '\0');
 
-        int yearDeath = ComputerScientists[i].getYearDied();
-        //yearDeath.resize(10, '\0');
+        string yearBorn = ComputerScientists[i].getYearBorn();
+        string yearDeath = ComputerScientists[i].getYearDied();
 
         cout << i + 1 << "\t|";
         cout << " " << name;
-        //cout << "\t" << gender;
+        cout << "\t" << gender;
         cout << "\t" << yearBorn;
-        cout << "\t" << yearDeath << endl;
+        cout << "\t\t" << yearDeath << endl;
     }
+    cin.get();
 }
 
 void UI::displayComputers(std::vector<Computer> Computers)
@@ -336,28 +334,26 @@ bool UI::addScientist(string data)
 
     if (fields.size() > 2 && fields.size() < 5)
     {
-        string name = fields.at(0);
-
-        enum sexType sex;
+        string gender;
         if (fields.at(1) == "male")
         {
-            sex = male;
+            gender = "male";
         }
         else
         {
-            sex = female;
+            gender = "female";
         }
         int yearBorn = utils::stringToInt(fields.at(2));
 
         if (fields.size() == 3)
         {
-            return nerdService.addScientist(Nerd(name, sex, yearBorn));
+            //return nerdService.addScientist(Nerd(name, sex, yearBorn));
         }
         else
         {
             int yearDied = utils::stringToInt(fields.at(3));
 
-            return nerdService.addScientist(Nerd(name, sex, yearBorn, yearDied));
+            //return nerdService.addScientist(Nerd(name, sex, yearBorn, yearDied));
         }
     }
 

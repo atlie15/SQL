@@ -11,21 +11,21 @@ enum sexType {
 class Nerd
 {
 public:
-    Nerd(std::string newName, sexType newSex, int newYearBorn, int newYearDeath);
-    Nerd(std::string newName, sexType newSex, int newYearBorn);
+    Nerd(std::string newName, std::string newSex, std::string newYearBorn, std::string newYearDeath);
+    Nerd(std::string newName, std::string newSex, std::string newYearBorn);
 
     std::string getName() const;
-    enum sexType getSex() const;
-    int getYearBorn() const;
-    int getYearDied() const;
+    std::string getSex() const;
+    std::string getYearBorn() const;
+    std::string getYearDied() const;
 
     bool contains(std::string searchTerm);
 
 private:
     std::string name;
-    enum sexType sex;
-    int yearBorn;
-    int yearDeath;
+    std::string sex;
+    std::string yearBorn;
+    std::string yearDeath;
 };
 
 #endif // NERD_H

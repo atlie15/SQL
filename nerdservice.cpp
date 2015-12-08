@@ -29,6 +29,11 @@ bool NerdService::addScientist(Nerd nerd)
     return nerdSQL.addScientist(nerd);
 }
 
+bool NerdService::addComputer(Computer computer)
+{
+    return nerdSQL.addComputer(computer);
+}
+
 std::vector<Computer> NerdService::getAllComputers()
 {
     vector<Computer> Computers = nerdSQL.getAllComputers();

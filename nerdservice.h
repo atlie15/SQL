@@ -13,6 +13,7 @@ public:
     std::vector<Computer> getAllComputers();
     std::vector<Nerd> searchForScientists(std::string searchTerm);
     bool addScientist(Nerd nerd);
+    bool addComputer(Computer computer);
 private:
     NerdSQL nerdSQL;
 };

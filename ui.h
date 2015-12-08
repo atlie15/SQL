@@ -26,6 +26,7 @@ private:
     void readInput();
     void displayMenu();
     void displayAddScientistMenu();
+    void displayAddComputerMenu();
     void displayChoose();
     void displayAllScientists();
     void displayAllComputers();
@@ -39,6 +40,7 @@ private:
     void sortCommandHandler(std::string userInput);
     void searchCommandHandler(std::string userInput);
     bool addScientist(std::string data);
+    bool addComputer(std::string data);
     bool setSort(std::string sortCommand);
     void displayError(std::string error);
 

@@ -13,7 +13,6 @@ SOURCES += main.cpp \
     models/nerd.cpp \
     models/computer.cpp \
     nerdsql.cpp \
-    utilities/scientistcomparator.cpp \
     utilities/utils.cpp
 
 HEADERS += \
@@ -23,6 +22,5 @@ HEADERS += \
     models/computer.h \
     nerdsql.h \
     utilities/constants.h \
-    utilities/scientistcomparator.h \
     utilities/utils.h
 

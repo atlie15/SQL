@@ -12,7 +12,7 @@ NerdSQL::NerdSQL()
 
 }
 
-std::vector<Nerd> NerdSQL::getAllScientists()
+std::vector<Nerd> NerdSQL::getAllScientists(std::string orderBy, bool orderAscending)
 {
     vector<Nerd> ComputerScientists;
 
@@ -47,7 +47,7 @@ std::vector<Nerd> NerdSQL::getAllScientists()
     return ComputerScientists;
 }
 
-std::vector<Computer> NerdSQL::getAllComputers()
+std::vector<Computer> NerdSQL::getAllComputers(std::string orderBy, bool orderAscending)
 {
     vector<Computer> Computers;
 
@@ -72,7 +72,6 @@ std::vector<Computer> NerdSQL::getAllComputers()
         string type = query.value("Type").toString().toStdString();
         bool made = query.value("Made").toBool();
 
-
         Computer pc(name, yearBuilt, type, made);
 
         Computers.push_back(pc);
@@ -80,13 +79,42 @@ std::vector<Computer> NerdSQL::getAllComputers()
 
     db.close();
 
-    return Computers;}
+    return Computers;
+}
 
 std::vector<Nerd> NerdSQL::searchForScientists(std::string searchTerm)
 {
-    vector<Nerd> allNerds = getAllScientists();
+    vector<Nerd> ComputerScientists;
 
-    return allNerds;
+    QSqlDatabase db;
+    db = QSqlDatabase::addDatabase("QSQLITE");
+
+    QString dbName = "../SQL/Scientists.sqlite";
+    db.setDatabaseName(dbName);
+
+    db.open();
+
+    QSqlQuery query(db);
+
+    query.prepare("SELECT * FROM People");
+    query.bindValue("Name", QString::fromStdString("*"));
+
+    query.exec();
+
+    while(query.next()){
+        string name = query.value("Name").toString().toStdString();
+        string gender = query.value("Gender").toString().toStdString();
+        string yearBorn = query.value("yearBorn").toString().toStdString();
+        string yearDeath = query.value("yearDeath").toString().toStdString();
+
+        Nerd scientist(name, gender, yearBorn, yearDeath);
+
+        ComputerScientists.push_back(scientist);
+    }
+
+    db.close();
+
+    return ComputerScientists;
 }
 
 bool NerdSQL::addScientist(Nerd nerd)

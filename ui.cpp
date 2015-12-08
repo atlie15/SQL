@@ -236,7 +236,7 @@ void UI::displayAllScientists()
 
 void UI::displayAllComputers()
 {
-    vector<Computer> Computers = nerdService.getAllComputers();
+    vector<Computer> Computers = nerdService.getAllComputers(sortBy, sortAscending);
 
     displayComputers(Computers);
 

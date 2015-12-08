@@ -2,20 +2,12 @@
 
 using namespace std;
 
-Computer::Computer(string name, string sex, string yearBorn)
+Computer::Computer(string newName, string newYearBuilt, string newType, bool newMade)
 {
-    name = name;
-    sex = sex;
-    yearBorn = yearBorn;
-    yearDied = "";
-}
-
-Computer::Computer(string name, string sex, string yearBorn, string yearDied)
-{
-    name = name;
-    sex = sex;
-    yearBorn = yearBorn;
-    yearDied = yearDied;
+    name = newName;
+    yearBuilt = newYearBuilt;
+    type = newType;
+    made = newMade;
 }
 
 std::string Computer::getName() const
@@ -23,17 +15,17 @@ std::string Computer::getName() const
     return name;
 }
 
-std::string Computer::getSex() const
+std::string Computer::getType() const
 {
-    return sex;
+    return type;
 }
 
-std::string Computer::getYearBorn() const
+std::string Computer::getYearBuilt() const
 {
-    return yearBorn;
+    return yearBuilt;
 }
 
-std::string Computer::getYearDied() const
+bool Computer::getMade() const
 {
-    return yearDied;
+    return made;
 }

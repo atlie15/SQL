@@ -6,19 +6,17 @@
 class Computer
 {
 public:
-    Computer(std::string name, std::string sex, std::string yearBorn);
-    Computer(std::string name, std::string sex, std::string yearBorn, std::string yearDied);
-
+    Computer(std::string newName, std::string newYearBuilt, std::string newType, bool newMade);
     std::string getName() const;
-    std::string getSex() const;
-    std::string getYearBorn() const;
-    std::string getYearDied() const;
+    std::string getType() const;
+    std::string getYearBuilt() const;
+    bool getMade() const;
 
 private:
     std::string name;
-    std::string sex;
-    std::string yearBorn;
-    std::string yearDied;
+    std::string yearBuilt;
+    std::string type;
+    bool made;
 };
 
 #endif // COMPUTER_H

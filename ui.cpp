@@ -34,7 +34,10 @@ void UI::display()
             displayMenu();
             break;
         case add:
-            displayAddScientistMenu();
+            if(isScientist)
+                displayAddScientistMenu();
+            else
+                displayAddComputerMenu();
             break;
         case view:
             if(isScientist)
@@ -80,6 +83,7 @@ void UI::readInput()
     }
     else if (userInput == "add" && shouldTreatInputAsCommand)
     {
+        displayChoose();
         lastCommand = add;
     }
     else if (userInput == "search" && shouldTreatInputAsCommand)
@@ -117,13 +121,27 @@ void UI::readInput()
 
 void UI::addCommandHandler(string userInput)
 {
-    if (addScientist(userInput)) {
-        cout << "Successfully added a scientist\n\n";
-        lastCommand = menu;
+    if(isScientist)
+    {
+        if (addScientist(userInput)) {
+            cout << "Successfully added a scientist\n\n";
+            lastCommand = menu;
+        }
+        else
+        {
+            displayError("There was an error in your input.");
+        }
     }
     else
     {
-        displayError("There was an error in your input.");
+        if (addComputer(userInput)) {
+            cout << "Successfully added a computer\n\n";
+            lastCommand = menu;
+        }
+        else
+        {
+            displayError("There was an error in your input.");
+        }
     }
 }
 
@@ -161,20 +179,28 @@ void UI::displayMenu()
 
 void UI::displayAddScientistMenu()
 {
-    cout << "Enter a Scientist" << endl;
-    cout << "-----------------------------------------------------" << endl;
-    cout << "\t1. Add Scientist to your list" << endl;
-    cout << "\t9. Return to main menu" << endl;
+    cout << "To add a scientist, type in:\n";
+    cout << "Name,sex,yearBorn,yearDied (optional)\n";
+    cout << "Comma separated like in the example above.\n\n";
+    cout << "If you would like to go back to the main menu, please type: back\n";
+    cout << "Input: ";
+}
 
+void UI::displayAddComputerMenu()
+{
+    cout << "To add a computer, type in:\n";
+    cout << "Name,type,yearBuilt,made(y/n)\n";
+    cout << "Comma separated like in the example above.\n\n";
+    cout << "If you would like to go back to the main menu, please type: back\n";
     cout << "Input: ";
 }
 
 void UI::displayChoose()
 {
-    cout << "Choose whether you like to view computers or scientists" << endl;
+    cout << "Choose whether you like to use computers or scientists" << endl;
     cout << "-----------------------------------------------------" << endl;
-    cout << "\tTo view all Scientists, type 'scientists'" << endl;
-    cout << "\tTo view all Computers, type 'computers'" << endl;
+    cout << "\tTo use Scientists, type 'scientists'" << endl;
+    cout << "\tTo use Computers, type 'computers'" << endl;
     cout << "\tType 'back' to return to main menu" << endl;
     cout << "\tType 'quit' to exit program" << endl;
 
@@ -334,6 +360,7 @@ bool UI::addScientist(string data)
 
     if (fields.size() > 2 && fields.size() < 5)
     {
+<<<<<<< HEAD
         string gender;
         if (fields.at(1) == "male")
         {
@@ -344,6 +371,15 @@ bool UI::addScientist(string data)
             gender = "female";
         }
         int yearBorn = utils::stringToInt(fields.at(2));
+=======
+        string name = fields.at(0);
+        string sex = fields.at(1);
+        if (sex == "m" || sex == "M" || sex == "male")
+            sex = "m";
+        else
+            sex = "f";
+        string yearBorn = fields.at(2);
+>>>>>>> origin/master
 
         if (fields.size() == 3)
         {
@@ -351,10 +387,33 @@ bool UI::addScientist(string data)
         }
         else
         {
-            int yearDied = utils::stringToInt(fields.at(3));
+            string yearDied = fields.at(3));
 
             //return nerdService.addScientist(Nerd(name, sex, yearBorn, yearDied));
         }
+    }
+
+    return false;
+}
+
+bool UI::addComputer(string data)
+{
+    vector<string> fields = utils::splitString(data, ',');
+
+    if (fields.size() > 2 && fields.size() < 5)
+    {
+        string name = fields.at(0);
+        string type = fields.at(1);
+        string yearBuilt = fields.at(2);
+
+        bool made;
+        string wasMade = fields.at(3);
+        if(wasMade == "y")
+            made = true;
+        else
+            made = false;
+
+        return nerdService.addComputer(Computer(name,type,yearBuilt,made))
     }
 
     return false;

@@ -94,3 +94,8 @@ bool NerdSQL::addScientist(Nerd nerd)
     return true;
 }
 
+bool NerdSQL::addComputer(Computer computer)
+{
+    return true;
+}
+

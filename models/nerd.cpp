@@ -28,12 +28,20 @@ std::string Nerd::getSex() const
     return sex;
 }
 
+<<<<<<< HEAD
 string Nerd::getYearBorn() const
+=======
+std::string Nerd::getYearBorn() const
+>>>>>>> origin/master
 {
     return yearBorn;
 }
 
+<<<<<<< HEAD
 string Nerd::getYearDied() const
+=======
+std::string Nerd::getYearDied() const
+>>>>>>> origin/master
 {
     return yearDeath;
 }

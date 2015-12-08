@@ -275,6 +275,7 @@ void UI::displayScientists(std::vector<Nerd> ComputerScientists)
         cout << "\t" << yearBorn;
         cout << "\t\t" << yearDeath << endl;
     }
+    cout << endl << "Press enter to continue";
     cin.get();
 }
 

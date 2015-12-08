@@ -91,6 +91,30 @@ std::vector<Nerd> NerdSQL::searchForScientists(std::string searchTerm)
 
 bool NerdSQL::addScientist(Nerd nerd)
 {
+    QSqlDatabase db;
+    db = QSqlDatabase::addDatabase("QSQLITE");
+
+    QString dbName = "../SQL/Scientists.sqlite";
+    db.setDatabaseName(dbName);
+
+    db.open();
+
+    QSqlQuery query;
+
+    string name = nerd.getName();
+    string gender = nerd.getSex();
+    string yearBorn = nerd.getYearBorn();
+    string yearDeath = nerd.getYearDied();
+
+    query.prepare("INSERT INTO People(Name, Gender, YearBorn, YearDeath) "
+                  "VALUES (:Name, :Gender, :YearBorn, :YearDeath)");
+    query.bindValue(":Name", QString::fromStdString(name));
+    query.bindValue(":Gender", QString::fromStdString(gender));
+    query.bindValue(":YearBorn", QString::fromStdString(yearBorn));
+    query.bindValue(":YearDeath", QString::fromStdString(yearDeath));
+    query.exec();
+    db.close();
+
     return true;
 }
 

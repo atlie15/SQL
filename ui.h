@@ -7,6 +7,8 @@ enum command {
     menu,
     add,
     view,
+    computers,
+    scientists,
     search,
     sort,
     back,
@@ -24,11 +26,15 @@ private:
     void readInput();
     void displayMenu();
     void displayAddScientistMenu();
+    void displayChoose();
     void displayAllScientists();
+    void displayAllComputers();
     void displayScientistSearchMenu();
     void displayScientistSortMenu();
+    void displayComputerSortMenu();
     void displayUnknownCommandMenu();
     void displayScientists(std::vector<Nerd> ComputerScientists);
+    void displayComputers(std::vector<Computer> Computers);
     void addCommandHandler(std::string userInput);
     void sortCommandHandler(std::string userInput);
     void searchCommandHandler(std::string userInput);
@@ -36,6 +42,7 @@ private:
     bool setSort(std::string sortCommand);
     void displayError(std::string error);
 
+    bool isScientist;
     enum command lastCommand;
     NerdService nerdService;
     std::string sortBy;

@@ -10,6 +10,7 @@ class NerdService
 public:
     NerdService();
     std::vector<Nerd> getAllScientists(std::string orderBy, bool orderAscending);
+    std::vector<Computer> getAllComputers();
     std::vector<Nerd> searchForScientists(std::string searchTerm);
     bool addScientist(Nerd nerd);
 private:

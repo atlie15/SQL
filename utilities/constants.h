@@ -20,6 +20,13 @@ namespace constants {
     const std::string SORT_SCIENTIST_YEAR_BORN_DESCENDING = "born-desc";
     const std::string SORT_SCIENTIST_YEAR_DIED_ASCENDING = "died-asc";
     const std::string SORT_SCIENTIST_YEAR_DIED_DESCENDING = "died-desc";
+
+    const std::string SORT_COMPUTER_NAME_ASCENDING = "name-asc";
+    const std::string SORT_COMPUTER_NAME_DESCENDING = "name-desc";
+    const std::string SORT_COMPUTER_TYPE_ASCENDING = "type-asc";
+    const std::string SORT_COMPUTER_TYPE_DESCENDING = "type-desc";
+    const std::string SORT_COMPUTER_YEAR_MADE_ASCENDING = "year-asc";
+    const std::string SORT_COMPUTER_YEAR_MADE_DESCENDING = "year-desc";
 }
 
 #endif // CONSTANTS_H

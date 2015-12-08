@@ -73,7 +73,7 @@ std::vector<Computer> NerdSQL::getAllComputers()
 
     while(query.next()){
         string name = query.value("Name").toString().toStdString();
-        string yearBuilt = query.value("yearBuilt").toString().toStdString();
+        string yearBuilt = query.value("YearBuilt").toString().toStdString();
         string type = query.value("Type").toString().toStdString();
         bool made = query.value("Made").toBool();
 

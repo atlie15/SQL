@@ -217,7 +217,10 @@ void UI::displayChoose()
     else if(userInput == "quit")
         lastCommand = quit;
     else
-        lastCommand = unknown;
+    {
+        cout << "Invalid option, please try again" << endl << endl;
+        return displayChoose();
+    }
 }
 
 void UI::displayAllScientists()
@@ -244,6 +247,7 @@ void UI::displayAllComputers()
 
 void UI::displayScientists(std::vector<Nerd> ComputerScientists)
 {
+    system("CLS");
     cout << "Number\tName                          \t\tGender\t        Year born\tYear death" << endl;
     cout << "\t----------------------------------------------------------------------------------" << endl;
 
@@ -276,17 +280,18 @@ void UI::displayScientists(std::vector<Nerd> ComputerScientists)
 
 void UI::displayComputers(std::vector<Computer> Computers)
 {
-    cout << "Number\tName                          \t\tGender\t        Year born\tYear death" << endl;
-    cout << "\t----------------------------------------------------------------------------------" << endl;
+    system("CLS");
+    cout << "Number\t  Name\t\t\tYearBuilt\tType\t\tMade" << endl;
+    cout << "\t--------------------------------------------------------------------" << endl;
 
     for(unsigned int i = 0; i < Computers.size(); i++)
     {
         string name = Computers[i].getName();
-        name.resize(30, '\0');
+        name.resize(15, '\0');
         string yearBuilt = Computers[i].getYearBuilt();
-        name.resize(30, '\0');
+        yearBuilt.resize(10, '\0');
         string type = Computers[i].getType();
-        name.resize(30, '\0');
+        type.resize(10, '\0');
 
         string made;
         bool gotMade = Computers[i].getMade();
@@ -294,14 +299,16 @@ void UI::displayComputers(std::vector<Computer> Computers)
             made = "Was made";
         else
             made = "Wasn't made";
-        made.resize(30, '\0');
+        made.resize(15, '\0');
 
         cout << i + 1 << "\t|";
         cout << " " << name;
         cout << "\t" << yearBuilt;
-        cout << "\t" << type << endl;
+        cout << "\t" << type;
         cout << "\t" << made << endl;
     }
+    cout << endl << "Press enter to continue";
+    cin.get();
 }
 
 void UI::displayScientistSearchMenu()
@@ -316,12 +323,11 @@ void UI::displayScientistSortMenu()
 {
     cout << "How would you like to view the list of Scientists?" << endl;
     cout << "-----------------------------------------------------" << endl;
-    cout << "\tName in alphabetical order [A-Z] 'name-asc'" << endl;
-    cout << "\tName in alphabetical order [Z-A]'name-desc'" << endl;
-    cout << "\t3. Year of birth [descending]" << endl;
-    cout << "\t4. Year of birth [ascending]" << endl;
-    cout << "\t5. Default" << endl;
-    cout << "\t9. Back to main menu." << endl;
+    cout << "\t'name-asc' : Name in alphabetical order [A-Z] " << endl;
+    cout << "\t'name-desc': Name in alphabetical order [Z-A]" << endl;
+    cout << "\t'year-born': Year of birth [descending]" << endl;
+    cout << "\t'year-dead': Year of birth [ascending]" << endl;
+    cout << "\t     'back': Back to main menu." << endl;
     cout << endl;
 
     cout << "Command: ";

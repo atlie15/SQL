@@ -19,7 +19,6 @@ int UI::start()
 {
     while(lastCommand != quit)
     {
-        system("CLS");
         display();
         readInput();
     }
@@ -86,7 +85,7 @@ void UI::readInput()
     }
     else if (userInput == "add" && shouldTreatInputAsCommand)
     {
-        if(displayChoose())
+        if(displayAdd())
             lastCommand = add;
     }
     else if (userInput == "search" && shouldTreatInputAsCommand)
@@ -173,11 +172,11 @@ void UI::displayMenu()
 {
     cout << "Welcome to the Ultimade guide of Computer Scientists!" << endl;
     cout << "-----------------------------------------------------" << endl;
-    cout << "\t 'view' to Show a list of every computer scientists" << endl;
-    cout << "\t 'add' to Add computer scientist to the list" << endl;
-    cout << "\t 'remove' to Remove computer scientist from the list" << endl;
-    cout << "\t 'search' to Search for scientists in the list" << endl;
-    cout << "\t 'quit' to Quit program" << endl;
+    cout << "\t  view: Show a list of every computer scientists" << endl;
+    cout << "\t   add: Add computer scientist to the list" << endl;
+    cout << "\tremove: Remove computer scientist from the list" << endl;
+    cout << "\tsearch: Search for scientists in the list" << endl;
+    cout << "\t  quit: Quit program" << endl;
     cout << endl;
     cout << "Command: ";
 }
@@ -200,14 +199,56 @@ void UI::displayAddComputerMenu()
     cout << "Input: ";
 }
 
+bool UI::displayAdd()
+{
+    cout << "Choose whether you like to add Computers or Scientists" << endl;
+    cout << "-----------------------------------------------------" << endl;
+    cout << "\tscientists: Add Scientist" << endl;
+    cout << "\t computers: Add Computer" << endl;
+    cout << "\t      back: Return to main menu" << endl;
+    cout << "\t      quit: Exit program" << endl;
+
+    cout << "Input: ";
+
+    string userInput;
+    getline(cin, userInput);
+
+    cout << "\n\n";
+    if(userInput == "scientists")
+    {
+        isScientist=true;
+        return true;
+    }
+    else if(userInput == "computers")
+    {
+        isScientist=false;
+        return true;
+    }
+    else if(userInput == "back")
+    {
+        lastCommand = menu;
+        return false;
+    }
+    else if(userInput == "quit")
+    {
+        lastCommand = quit;
+        return false;
+    }
+    else
+    {
+        cout << "Invalid option, please try again" << endl << endl;
+        return displayChoose();
+    }
+}
+
 bool UI::displayChoose()
 {
-    cout << "Choose whether you like to use computers or scientists" << endl;
+    cout << "Choose whether you like display Computers or Scientists" << endl;
     cout << "-----------------------------------------------------" << endl;
-    cout << "\tTo use Scientists, type 'scientists'" << endl;
-    cout << "\tTo use Computers, type 'computers'" << endl;
-    cout << "\tType 'back' to return to main menu" << endl;
-    cout << "\tType 'quit' to exit program" << endl;
+    cout << "\tscientists: Display Scientists" << endl;
+    cout << "\t computers: Display Computers" << endl;
+    cout << "\t      back: Return to main menu" << endl;
+    cout << "\t      quit: Exit program" << endl;
 
     cout << "Input: ";
 
@@ -267,7 +308,7 @@ void UI::displayAllComputers()
 
 void UI::displayScientists(std::vector<Nerd> ComputerScientists)
 {
-    //system("CLS");
+    system("CLS");
     cout << "Number\tName                          \t\tGender\t        Year born\tYear death" << endl;
     cout << "\t----------------------------------------------------------------------------------" << endl;
 
@@ -301,7 +342,7 @@ void UI::displayScientists(std::vector<Nerd> ComputerScientists)
 
 void UI::displayComputers(std::vector<Computer> Computers)
 {
-    //system("CLS");
+    system("CLS");
     cout << "Number\t  Name\t\t\tYearBuilt\tType\t\tMade" << endl;
     cout << "\t--------------------------------------------------------------------" << endl;
 
@@ -352,11 +393,12 @@ void UI::displayScientistSortMenu()
 {
     cout << "How would you like to view the list of Scientists?" << endl;
     cout << "-----------------------------------------------------" << endl;
-    cout << "\t'name-asc' : Name in alphabetical order [A-Z] " << endl;
-    cout << "\t'name-desc': Name in alphabetical order [Z-A]" << endl;
-    cout << "\t'year-born': Year of birth [descending]" << endl;
-    cout << "\t'year-dead': Year of birth [ascending]" << endl;
-    cout << "\t     'back': Back to main menu." << endl;
+    cout << "\t name-asc: Name in alphabetical order [A-Z] " << endl;
+    cout << "\tname-desc: Name in alphabetical order [Z-A]" << endl;
+    cout << "\tyear-born: Year of birth [descending]" << endl;
+    cout << "\tyear-dead: Year of birth [ascending]" << endl;
+    cout << "\t     back: Back to main menu." << endl;
+    cout << "\t     quit: Exit program" << endl;
     cout << endl;
 
     cout << "Command: ";
@@ -366,11 +408,10 @@ void UI::displayComputerSortMenu()
 {
     cout << "How would you like to view the list of Computers?" << endl;
     cout << "-----------------------------------------------------" << endl;
-    cout << "\tName in alphabetical order [A-Z] 'name-asc'" << endl;
-    cout << "\tName in alphabetical order [Z-A]'name-desc'" << endl;
-    cout << "\tYear made [descending]" << endl;
-    cout << "\t5. Default" << endl;
-    cout << "\t9. Back to main menu." << endl;
+    cout << "\t name-asc: Name in alphabetical order [A-Z] " << endl;
+    cout << "\tname-desc: Name in alphabetical order [Z-A]" << endl;
+    cout << "\t     back: Back to main menu." << endl;
+    cout << "\t     quit: Exit program" << endl;
     cout << endl;
 
     cout << "Command: ";

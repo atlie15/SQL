@@ -9,7 +9,9 @@ class NerdService
 {
 public:
     NerdService();
-    std::vector<Nerd> getAllNerds();
+    std::vector<Nerd> getAllScientists(std::string orderBy, bool orderAscending);
+    std::vector<Nerd> searchForScientists(std::string searchTerm);
+    bool addScientist(Nerd nerd);
 private:
     NerdSQL nerdSQL;
 };

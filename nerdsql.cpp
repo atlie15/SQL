@@ -12,7 +12,7 @@ NerdSQL::NerdSQL()
 
 }
 
-std::vector<Nerd> NerdSQL::getAllNerds()
+std::vector<Nerd> NerdSQL::getAllScientists()
 {
     vector<Nerd> ComputerScientists;
 
@@ -34,9 +34,14 @@ std::vector<Nerd> NerdSQL::getAllNerds()
     while(query.next()){
 
         string name = query.value("Name").toString().toStdString();
-        string sex = query.value("Gender").toString().toStdString();
-        string born = query.value("YearBorn").toString().toStdString();
-        string dead = query.value("YearDeath").toString().toStdString();
+        string gender = query.value("Gender").toString().toStdString();
+        sexType sex;
+        if (gender == "male")
+            sex = male;
+        else
+            sex = female;
+        int born = query.value("YearBorn").toInt();
+        int dead = query.value("YearDeath").toInt();
 
         Nerd dude(name, sex, born, dead);
 
@@ -47,3 +52,16 @@ std::vector<Nerd> NerdSQL::getAllNerds()
 
     return ComputerScientists;
 }
+
+std::vector<Nerd> NerdSQL::searchForScientists(std::string searchTerm)
+{
+    vector<Nerd> allNerds = getAllScientists();
+
+    return allNerds;
+}
+
+bool NerdSQL::addScientist(Nerd nerd)
+{
+    return true;
+}
+

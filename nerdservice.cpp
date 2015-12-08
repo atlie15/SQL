@@ -1,4 +1,5 @@
 #include "nerdservice.h"
+#include "utilities/scientistcomparator.h"
 
 #include <algorithm>
 
@@ -9,9 +10,22 @@ NerdService::NerdService()
 
 }
 
-std::vector<Nerd> NerdService::getAllNerds()
+std::vector<Nerd> NerdService::getAllScientists(std::string orderBy, bool orderAscending)
 {
-    vector<Nerd> ComputerScientists = nerdSQL.getAllNerds();
+    vector<Nerd> ComputerScientists = nerdSQL.getAllScientists();
+
+    std::sort(ComputerScientists.begin(), ComputerScientists.end(), ScientistComparator(orderBy, orderAscending));
 
     return ComputerScientists;
 }
+
+std::vector<Nerd>  NerdService::searchForScientists(std::string searchTerm)
+{
+    return nerdSQL.searchForScientists(searchTerm);
+}
+
+bool NerdService::addScientist(Nerd nerd)
+{
+    return nerdSQL.addScientist(nerd);
+}
+

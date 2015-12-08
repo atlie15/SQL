@@ -12,12 +12,17 @@ SOURCES += main.cpp \
     nerdservice.cpp \
     models/nerd.cpp \
     models/computer.cpp \
-    nerdsql.cpp
+    nerdsql.cpp \
+    utilities/scientistcomparator.cpp \
+    utilities/utils.cpp
 
 HEADERS += \
     ui.h \
     nerdservice.h \
     models/nerd.h \
     models/computer.h \
-    nerdsql.h
+    nerdsql.h \
+    utilities/constants.h \
+    utilities/scientistcomparator.h \
+    utilities/utils.h
 

@@ -10,10 +10,11 @@ class NerdSQL
 {
 public:
     NerdSQL();
-    std::vector<Nerd> getAllNerds();
+    std::vector<Nerd> getAllScientists();
+    std::vector<Nerd> searchForScientists(std::string searchTerm);
+    bool addScientist(Nerd nerd);
 private:
     std::string db;
-
 };
 
 #endif // NERDSQL_H

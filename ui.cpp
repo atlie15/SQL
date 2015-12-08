@@ -19,6 +19,7 @@ int UI::start()
 {
     while(lastCommand != quit)
     {
+        system("CLS");
         display();
         readInput();
     }
@@ -247,7 +248,7 @@ void UI::displayAllComputers()
 
 void UI::displayScientists(std::vector<Nerd> ComputerScientists)
 {
-    system("CLS");
+    //system("CLS");
     cout << "Number\tName                          \t\tGender\t        Year born\tYear death" << endl;
     cout << "\t----------------------------------------------------------------------------------" << endl;
 
@@ -281,7 +282,7 @@ void UI::displayScientists(std::vector<Nerd> ComputerScientists)
 
 void UI::displayComputers(std::vector<Computer> Computers)
 {
-    system("CLS");
+    //system("CLS");
     cout << "Number\t  Name\t\t\tYearBuilt\tType\t\tMade" << endl;
     cout << "\t--------------------------------------------------------------------" << endl;
 

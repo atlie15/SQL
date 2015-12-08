@@ -1,5 +1,5 @@
 #include "nerdsql.h"
-
+#include <iostream>
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QString>
@@ -19,7 +19,7 @@ std::vector<Nerd> NerdSQL::getAllScientists()
     QSqlDatabase db;
     db = QSqlDatabase::addDatabase("QSQLITE");
 
-    QString dbName = "Scientists.sqlite";
+    QString dbName = "../SQL/Scientists.sqlite";
     db.setDatabaseName(dbName);
 
     db.open();
@@ -32,7 +32,6 @@ std::vector<Nerd> NerdSQL::getAllScientists()
     query.exec();
 
     while(query.next()){
-
         string name = query.value("Name").toString().toStdString();
         string gender = query.value("Gender").toString().toStdString();
         sexType sex;

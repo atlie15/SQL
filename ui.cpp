@@ -173,7 +173,7 @@ void UI::displayAllScientists()
 
 void UI::displayScientists(std::vector<Nerd> ComputerScientists)
 {
-    system("CLS");
+    //system("CLS");
 
     cout << "Number\tName                          \t\tGender\t        Year born\tYear death" << endl;
     cout << "\t----------------------------------------------------------------------------------" << endl;

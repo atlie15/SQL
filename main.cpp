@@ -7,4 +7,3 @@ int main()
     return console.start();
 }
 
-//i am tardo

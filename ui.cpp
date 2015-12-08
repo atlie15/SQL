@@ -58,7 +58,6 @@ void UI::display()
             displayUnknownCommandMenu();
             break;
     }
-    system("CLS");
 }
 
 void UI::readInput()
@@ -164,8 +163,6 @@ void UI::searchCommandHandler(string userInput)
 
 void UI::displayMenu()
 {
-    system("CLS");
-
     cout << "Welcome to the Ultimade guide of Computer Scientists!" << endl;
     cout << "-----------------------------------------------------" << endl;
     cout << "\t 'view' to Show a list of every computer scientists" << endl;
@@ -247,8 +244,6 @@ void UI::displayAllComputers()
 
 void UI::displayScientists(std::vector<Nerd> ComputerScientists)
 {
-    system("CLS");
-
     cout << "Number\tName                          \t\tGender\t        Year born\tYear death" << endl;
     cout << "\t----------------------------------------------------------------------------------" << endl;
 
@@ -281,8 +276,6 @@ void UI::displayScientists(std::vector<Nerd> ComputerScientists)
 
 void UI::displayComputers(std::vector<Computer> Computers)
 {
-    //system("CLS");
-
     cout << "Number\tName                          \t\tGender\t        Year born\tYear death" << endl;
     cout << "\t----------------------------------------------------------------------------------" << endl;
 
@@ -360,18 +353,6 @@ bool UI::addScientist(string data)
 
     if (fields.size() > 2 && fields.size() < 5)
     {
-<<<<<<< HEAD
-        string gender;
-        if (fields.at(1) == "male")
-        {
-            gender = "male";
-        }
-        else
-        {
-            gender = "female";
-        }
-        int yearBorn = utils::stringToInt(fields.at(2));
-=======
         string name = fields.at(0);
         string sex = fields.at(1);
         if (sex == "m" || sex == "M" || sex == "male")
@@ -379,17 +360,16 @@ bool UI::addScientist(string data)
         else
             sex = "f";
         string yearBorn = fields.at(2);
->>>>>>> origin/master
 
         if (fields.size() == 3)
         {
-            //return nerdService.addScientist(Nerd(name, sex, yearBorn));
+            return nerdService.addScientist(Nerd(name, sex, yearBorn));
         }
         else
         {
-            string yearDied = fields.at(3));
+            string yearDied = fields.at(3);
 
-            //return nerdService.addScientist(Nerd(name, sex, yearBorn, yearDied));
+            return nerdService.addScientist(Nerd(name, sex, yearBorn, yearDied));
         }
     }
 
@@ -413,7 +393,7 @@ bool UI::addComputer(string data)
         else
             made = false;
 
-        return nerdService.addComputer(Computer(name,type,yearBuilt,made))
+        return nerdService.addComputer(Computer(name,type,yearBuilt,made));
     }
 
     return false;

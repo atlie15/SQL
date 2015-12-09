@@ -202,10 +202,10 @@ void UI::searchCommandHandler(string userInput)
 void UI::displayMenu()
 {
     cout << "Welcome to the Ultimade guide of Computer Scientists!" << endl;
-    cout << "-----------------------------------------------------" << endl;
-    cout << "\t  view: Show a list of every computer scientists" << endl;
-    cout << "\t   add: Add computer scientist to the list" << endl;
-    cout << "\tsearch: Search for scientists in the list" << endl;
+    cout << "-------------------------------------------------------------------" << endl;
+    cout << "\t  view: Show a list of every Scientist/Computer/Connection" << endl;
+    cout << "\t   add: Add a Scientist/Computer/Connection to the list" << endl;
+    cout << "\tsearch: Search for Scientists/Computers in the list" << endl;
     cout << "\t  quit: Quit program" << endl;
     cout << endl;
     cout << "Command: ";
@@ -290,9 +290,9 @@ void UI::displayConnections(std::vector<string> Connections)
 
 void UI::displayAddConnectMenu()
 {
-    cout << "L'ettur header\n";
-    cout << "To add connection, type in:\n";
-    cout << "Name_of_scientist,Name_of_computer\n";
+    cout << "Add Connection" << endl;
+    cout << "----------------------------------------------------------------" << endl;
+    cout << "To add a connection, type in: NameOfScientist,NameOfComputer\n\n";
     cout << "Comma separated like in the example above.\n\n";
     cout << "If you would like to go back to the main menu, please type: back\n";
     cout << "Input: ";
@@ -586,12 +586,12 @@ void UI::displayConnectSortMenu()
 {
     cout << "How would you like to view the list of Connections?" << endl;
     cout << "-----------------------------------------------------" << endl;
-    cout << "\tsname-asc: Scientist name in alphabetical order [A-Z] " << endl;
+    cout << "\t sname-asc: Scientist name in alphabetical order [A-Z] " << endl;
     cout << "\tsname-desc: Scientist name in alphabetical order [Z-A]" << endl;
-    cout << "\tcname-asc: Computer name in alphabetical order [A-Z] " << endl;
+    cout << "\t cname-asc: Computer name in alphabetical order [A-Z] " << endl;
     cout << "\tcname-desc: Computer name in alphabetical order [Z-A]" << endl;
-    cout << "\t     back: Back to main menu." << endl;
-    cout << "\t     quit: Exit program" << endl;
+    cout << "\t      back: Back to main menu." << endl;
+    cout << "\t      quit: Exit program" << endl;
     cout << endl;
 
     cout << "Command: ";

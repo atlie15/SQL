@@ -294,7 +294,7 @@ void UI::displayAddConnectMenu()
     cout << "----------------------------------------------------------------" << endl;
     cout << "To add a connection, type in: NameOfScientist,NameOfComputer\n\n";
     cout << "Comma separated like in the example above.\n\n";
-    cout << "If you would like to go back to the main menu, please type: back\n";
+    cout << "If you would like to go back to the main menu, please type: 'back'\n\n";
     cout << "Input: ";
 }
 

@@ -29,6 +29,7 @@ private:
     void displayAddComputerMenu();
     bool displayChoose();
     bool displayAdd();
+    bool displaySearch();
     void displayAllScientists();
     void displayAllComputers();
     void displayScientistSearchMenu();

@@ -395,8 +395,10 @@ void UI::displayScientistSortMenu()
     cout << "-----------------------------------------------------" << endl;
     cout << "\t name-asc: Name in alphabetical order [A-Z] " << endl;
     cout << "\tname-desc: Name in alphabetical order [Z-A]" << endl;
-    cout << "\tyear-born: Year of birth [descending]" << endl;
-    cout << "\tyear-dead: Year of birth [ascending]" << endl;
+    cout << "\t born-asc: Year of birth [ascending]" << endl;
+    cout << "\tborn-desc: Year of birth [descending]" << endl;
+    cout << "\t died-asc: Year of death [ascending]" << endl;
+    cout << "\tdied-desc: Year of death [descending]" << endl;
     cout << "\t     back: Back to main menu." << endl;
     cout << "\t     quit: Exit program" << endl;
     cout << endl;
@@ -410,6 +412,10 @@ void UI::displayComputerSortMenu()
     cout << "-----------------------------------------------------" << endl;
     cout << "\t name-asc: Name in alphabetical order [A-Z] " << endl;
     cout << "\tname-desc: Name in alphabetical order [Z-A]" << endl;
+    cout << "\t type-asc: Type in alphabetical order [A-Z]" << endl;
+    cout << "\ttype-desc: Type in alphabetical order [Z-A]" << endl;
+    cout << "\t year-asc: Year built [ascending]" << endl;
+    cout << "\tyear-desc: Year built [descending]" << endl;
     cout << "\t     back: Back to main menu." << endl;
     cout << "\t     quit: Exit program" << endl;
     cout << endl;

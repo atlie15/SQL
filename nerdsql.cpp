@@ -1,5 +1,5 @@
 #include "nerdsql.h"
-#include <iostream>
+
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QString>
@@ -8,6 +8,10 @@
 using namespace std;
 
 NerdSQL::NerdSQL()
+{
+}
+
+void NerdSQL::openDB()
 {
 
 }
@@ -26,7 +30,16 @@ std::vector<Nerd> NerdSQL::getAllScientists(std::string orderBy, bool orderAscen
 
     QSqlQuery query(db);
 
-    query.prepare("SELECT * FROM People");
+    QString Asc;
+    if(orderAscending)
+        Asc = " ASC";
+    else
+        Asc = " DESC";
+
+    QString order = "SELECT * FROM People Order By " + QString::fromStdString(orderBy) + Asc;
+
+    query.prepare(order);
+
     query.bindValue("Name", QString::fromStdString("*"));
 
     query.exec();
@@ -61,7 +74,16 @@ std::vector<Computer> NerdSQL::getAllComputers(std::string orderBy, bool orderAs
 
     QSqlQuery query(db);
 
-    query.prepare("SELECT * FROM Computers");
+    QString Asc;
+    if(orderAscending)
+        Asc = " ASC";
+    else
+        Asc = " DESC";
+
+    QString order = "SELECT * FROM Computers Order By " + QString::fromStdString(orderBy) + Asc;
+
+
+    query.prepare(order);
     query.bindValue("Name", QString::fromStdString("*"));
 
     query.exec();
@@ -96,7 +118,11 @@ std::vector<Nerd> NerdSQL::searchForScientists(std::string searchTerm)
 
     QSqlQuery query(db);
 
-    query.prepare("SELECT * FROM People");
+    QString search = "SELECT * FROM People WHERE *='"+QString::fromStdString(searchTerm)+"'";
+
+    QTextStream(stdout) << search << endl;
+
+    query.prepare(search);
     query.bindValue("Name", QString::fromStdString("*"));
 
     query.exec();
@@ -131,7 +157,7 @@ std::vector<Computer> NerdSQL::searchForComputers(std::string searchTerm)
 
     QSqlQuery query(db);
 
-    query.prepare("SELECT * FROM Computers");
+    query.prepare("SELECT * FROM Computers"+QString::fromStdString(searchTerm));
     query.bindValue("Name", QString::fromStdString("*"));
 
     query.exec();
@@ -151,7 +177,6 @@ std::vector<Computer> NerdSQL::searchForComputers(std::string searchTerm)
 
     return Computers;
 }
-
 
 bool NerdSQL::addScientist(Nerd nerd)
 {

@@ -7,8 +7,6 @@ enum command {
     menu,
     add,
     view,
-    computers,
-    scientists,
     search,
     sort,
     back,

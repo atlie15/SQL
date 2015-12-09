@@ -440,32 +440,32 @@ bool UI::setSort(string sortCommand)
     {
         if (sortCommand == constants::SORT_SCIENTIST_NAME_ASCENDING)
         {
-            sortBy = "name";
+            sortBy = "Name";
             sortAscending = true;
         }
         else if (sortCommand == constants::SORT_SCIENTIST_NAME_DESCENDING)
         {
-            sortBy = "name";
+            sortBy = "Name";
             sortAscending = false;
         }
         else if (sortCommand == constants::SORT_SCIENTIST_YEAR_BORN_ASCENDING)
         {
-            sortBy = "yearBorn";
+            sortBy = "YearBorn";
             sortAscending = true;
         }
         else if (sortCommand == constants::SORT_SCIENTIST_YEAR_BORN_DESCENDING)
         {
-            sortBy = "yearBorn";
+            sortBy = "YearBorn";
             sortAscending = false;
         }
         else if (sortCommand == constants::SORT_SCIENTIST_YEAR_DIED_ASCENDING)
         {
-            sortBy = "yearDied";
+            sortBy = "YearDeath";
             sortAscending = true;
         }
         else if (sortCommand == constants::SORT_SCIENTIST_YEAR_DIED_DESCENDING)
         {
-            sortBy = "yearDied";
+            sortBy = "YearDeath";
             sortAscending = false;
         }
         else
@@ -477,32 +477,32 @@ bool UI::setSort(string sortCommand)
     {
         if (sortCommand == constants::SORT_COMPUTER_NAME_ASCENDING)
         {
-            sortBy = "name";
+            sortBy = "Name";
             sortAscending = true;
         }
         else if (sortCommand == constants::SORT_COMPUTER_NAME_DESCENDING)
         {
-            sortBy = "name";
+            sortBy = "Name";
             sortAscending = false;
         }
         else if (sortCommand == constants::SORT_COMPUTER_TYPE_ASCENDING)
         {
-            sortBy = "type";
+            sortBy = "Type";
             sortAscending = true;
         }
         else if (sortCommand == constants::SORT_COMPUTER_TYPE_DESCENDING)
         {
-            sortBy = "type";
+            sortBy = "Type";
             sortAscending = false;
         }
         else if (sortCommand == constants::SORT_COMPUTER_YEAR_MADE_ASCENDING)
         {
-            sortBy = "year";
+            sortBy = "YearBuilt";
             sortAscending = true;
         }
         else if (sortCommand == constants::SORT_COMPUTER_YEAR_MADE_DESCENDING)
         {
-            sortBy = "year";
+            sortBy = "YearBuilt";
             sortAscending = false;
         }
         else

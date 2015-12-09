@@ -17,8 +17,7 @@ public:
     std::vector<Computer> searchForComputers(std::string searchTerm);
     bool addScientist(Nerd nerd);
     bool addComputer(Computer computer);
-private:
-    std::string db;
+    void openDB();
 };
 
 #endif // NERDSQL_H

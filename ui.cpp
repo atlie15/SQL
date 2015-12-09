@@ -90,7 +90,7 @@ void UI::readInput()
     }
     else if (userInput == "search" && shouldTreatInputAsCommand)
     {
-        if(displayChoose())
+        if(displaySearch())
             lastCommand = search;
     }
     else if (userInput == "back")
@@ -197,6 +197,48 @@ void UI::displayAddComputerMenu()
     cout << "Comma separated like in the example above.\n\n";
     cout << "If you would like to go back to the main menu, please type: back\n";
     cout << "Input: ";
+}
+
+bool UI::displaySearch()
+{
+    cout << "Choose whether you like to search for Computers or Scientists" << endl;
+    cout << "-------------------------------------------------------------" << endl;
+    cout << "\tscientists: Search for Scientists" << endl;
+    cout << "\t computers: Search for Computers" << endl;
+    cout << "\t      back: Return to main menu" << endl;
+    cout << "\t      quit: Exit program" << endl;
+
+    cout << "Input: ";
+
+    string userInput;
+    getline(cin, userInput);
+
+    cout << "\n\n";
+    if(userInput == "scientists")
+    {
+        isScientist=true;
+        return true;
+    }
+    else if(userInput == "computers")
+    {
+        isScientist=false;
+        return true;
+    }
+    else if(userInput == "back")
+    {
+        lastCommand = menu;
+        return false;
+    }
+    else if(userInput == "quit")
+    {
+        lastCommand = quit;
+        return false;
+    }
+    else
+    {
+        cout << "Invalid option, please try again" << endl << endl;
+        return displayChoose();
+    }
 }
 
 bool UI::displayAdd()
@@ -375,6 +417,7 @@ void UI::displayComputers(std::vector<Computer> Computers)
 
 void UI::displayScientistSearchMenu()
 {
+    system("CLS");
     cout << "Search for a scientist.\n\n";
 
     cout << "If you would like to go back to the main menu, please type: back\n";
@@ -405,6 +448,8 @@ void UI::displayScientistSortMenu()
 
     cout << "Command: ";
 }
+
+
 
 void UI::displayComputerSortMenu()
 {

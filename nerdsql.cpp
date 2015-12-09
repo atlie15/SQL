@@ -1,8 +1,8 @@
 #include "nerdsql.h"
 
+#include <QString>
 #include <QtSql>
 #include <QSqlDatabase>
-#include <QString>
 #include <QSqlQuery>
 #include <iostream>
 
@@ -10,6 +10,8 @@ using namespace std;
 
 NerdSQL::NerdSQL()
 {
+    dbName = "../SQL/Scientists.sqlite";
+    randomName = "curlyTofu";
 }
 
 std::vector<Nerd> NerdSQL::getAllScientists(std::string orderBy, bool orderAscending)
@@ -17,12 +19,19 @@ std::vector<Nerd> NerdSQL::getAllScientists(std::string orderBy, bool orderAscen
     vector<Nerd> ComputerScientists;
 
     QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString conName = QString::fromStdString(randomName);
+    QString dName = QString::fromStdString(dbName);
 
-    QString dbName = "../SQL/Scientists.sqlite";
-    db.setDatabaseName(dbName);
 
-    db.open();
+    if(QSqlDatabase::contains(conName))
+        db = QSqlDatabase::database(conName);
+    else
+    {
+        db = QSqlDatabase::addDatabase("QSQLITE", conName);
+        db.setDatabaseName(dName);
+
+        db.open();
+    }
 
     QSqlQuery query(db);
 
@@ -61,12 +70,19 @@ std::vector<Computer> NerdSQL::getAllComputers(std::string orderBy, bool orderAs
     vector<Computer> Computers;
 
     QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString conName = QString::fromStdString(randomName);
+    QString dName = QString::fromStdString(dbName);
 
-    QString dbName = "../SQL/Scientists.sqlite";
-    db.setDatabaseName(dbName);
 
-    db.open();
+    if(QSqlDatabase::contains(conName))
+        db = QSqlDatabase::database(conName);
+    else
+    {
+        db = QSqlDatabase::addDatabase("QSQLITE", conName);
+        db.setDatabaseName(dName);
+
+        db.open();
+    }
 
     QSqlQuery query(db);
 
@@ -105,12 +121,19 @@ std::vector<string> NerdSQL::getAllConnections(std::string sortBy, bool sortAsce
     vector<string> Connections;
 
     QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString conName = QString::fromStdString(randomName);
+    QString dName = QString::fromStdString(dbName);
 
-    QString dbName = "../SQL/Scientists.sqlite";
-    db.setDatabaseName(dbName);
 
-    db.open();
+    if(QSqlDatabase::contains(conName))
+        db = QSqlDatabase::database(conName);
+    else
+    {
+        db = QSqlDatabase::addDatabase("QSQLITE", conName);
+        db.setDatabaseName(dName);
+
+        db.open();
+    }
 
     QSqlQuery query(db);
 
@@ -138,7 +161,6 @@ std::vector<string> NerdSQL::getAllConnections(std::string sortBy, bool sortAsce
 
     db.close();
 
-
     return Connections;
 }
 
@@ -147,12 +169,19 @@ std::vector<Nerd> NerdSQL::searchForScientists(std::string searchTerm)
     vector<Nerd> ComputerScientists;
 
     QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString conName = QString::fromStdString(randomName);
+    QString dName = QString::fromStdString(dbName);
 
-    QString dbName = "../SQL/Scientists.sqlite";
-    db.setDatabaseName(dbName);
 
-    db.open();
+    if(QSqlDatabase::contains(conName))
+        db = QSqlDatabase::database(conName);
+    else
+    {
+        db = QSqlDatabase::addDatabase("QSQLITE", conName);
+        db.setDatabaseName(dName);
+
+        db.open();
+    }
 
     QSqlQuery query(db);
 
@@ -186,12 +215,19 @@ std::vector<Computer> NerdSQL::searchForComputers(std::string searchTerm)
     vector<Computer> Computers;
 
     QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString conName = QString::fromStdString(randomName);
+    QString dName = QString::fromStdString(dbName);
 
-    QString dbName = "../SQL/Scientists.sqlite";
-    db.setDatabaseName(dbName);
 
-    db.open();
+    if(QSqlDatabase::contains(conName))
+        db = QSqlDatabase::database(conName);
+    else
+    {
+        db = QSqlDatabase::addDatabase("QSQLITE", conName);
+        db.setDatabaseName(dName);
+
+        db.open();
+    }
 
     QSqlQuery query(db);
 
@@ -222,12 +258,19 @@ std::vector<Computer> NerdSQL::searchForComputers(std::string searchTerm)
 bool NerdSQL::addScientist(Nerd nerd)
 {
     QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString conName = QString::fromStdString(randomName);
+    QString dName = QString::fromStdString(dbName);
 
-    QString dbName = "../SQL/Scientists.sqlite";
-    db.setDatabaseName(dbName);
 
-    db.open();
+    if(QSqlDatabase::contains(conName))
+        db = QSqlDatabase::database(conName);
+    else
+    {
+        db = QSqlDatabase::addDatabase("QSQLITE", conName);
+        db.setDatabaseName(dName);
+
+        db.open();
+    }
 
     QSqlQuery query;
 
@@ -251,12 +294,19 @@ bool NerdSQL::addScientist(Nerd nerd)
 bool NerdSQL::addComputer(Computer computer)
 {
     QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString conName = QString::fromStdString(randomName);
+    QString dName = QString::fromStdString(dbName);
 
-    QString dbName = "../SQL/Scientists.sqlite";
-    db.setDatabaseName(dbName);
 
-    db.open();
+    if(QSqlDatabase::contains(conName))
+        db = QSqlDatabase::database(conName);
+    else
+    {
+        db = QSqlDatabase::addDatabase("QSQLITE", conName);
+        db.setDatabaseName(dName);
+
+        db.open();
+    }
 
     QSqlQuery query;
 
@@ -282,12 +332,19 @@ bool NerdSQL::addConnection(std::string nerdName, std::string pcName)
     vector<string> Connections;
 
     QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString conName = QString::fromStdString(randomName);
+    QString dName = QString::fromStdString(dbName);
 
-    QString dbName = "../SQL/Scientists.sqlite";
-    db.setDatabaseName(dbName);
 
-    db.open();
+    if(QSqlDatabase::contains(conName))
+        db = QSqlDatabase::database(conName);
+    else
+    {
+        db = QSqlDatabase::addDatabase("QSQLITE", conName);
+        db.setDatabaseName(dName);
+
+        db.open();
+    }
 
     QSqlQuery query(db);
 
@@ -329,6 +386,8 @@ bool NerdSQL::addConnection(std::string nerdName, std::string pcName)
         query.bindValue(":CName", QString::fromStdString(Connections.at(1)));
         query.exec();
     }
+
+    db.close();
 
     return true;
 }

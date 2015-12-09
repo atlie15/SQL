@@ -258,20 +258,12 @@ std::vector<Computer> NerdSQL::searchForComputers(std::string searchTerm)
 bool NerdSQL::addScientist(Nerd nerd)
 {
     QSqlDatabase db;
-    QString conName = QString::fromStdString(randomName);
-    QString dName = QString::fromStdString(dbName);
+    db = QSqlDatabase::addDatabase("QSQLITE");
 
+    QString dbName = "../SQL/Scientists.sqlite";
+    db.setDatabaseName(dbName);
 
-    if(QSqlDatabase::contains(conName))
-        db = QSqlDatabase::database(conName);
-    else
-    {
-        db = QSqlDatabase::addDatabase("QSQLITE", conName);
-        db.setDatabaseName(dName);
-
-        db.open();
-    }
-
+    db.open();
     QSqlQuery query;
 
     string name = nerd.getName();
@@ -294,20 +286,12 @@ bool NerdSQL::addScientist(Nerd nerd)
 bool NerdSQL::addComputer(Computer computer)
 {
     QSqlDatabase db;
-    QString conName = QString::fromStdString(randomName);
-    QString dName = QString::fromStdString(dbName);
+    db = QSqlDatabase::addDatabase("QSQLITE");
 
+    QString dbName = "../SQL/Scientists.sqlite";
+    db.setDatabaseName(dbName);
 
-    if(QSqlDatabase::contains(conName))
-        db = QSqlDatabase::database(conName);
-    else
-    {
-        db = QSqlDatabase::addDatabase("QSQLITE", conName);
-        db.setDatabaseName(dName);
-
-        db.open();
-    }
-
+    db.open();
     QSqlQuery query;
 
     string name = computer.getName();
@@ -330,22 +314,13 @@ bool NerdSQL::addComputer(Computer computer)
 bool NerdSQL::addConnection(std::string nerdName, std::string pcName)
 {
     vector<string> Connections;
-
     QSqlDatabase db;
-    QString conName = QString::fromStdString(randomName);
-    QString dName = QString::fromStdString(dbName);
+    db = QSqlDatabase::addDatabase("QSQLITE");
 
+    QString dbName = "../SQL/Scientists.sqlite";
+    db.setDatabaseName(dbName);
 
-    if(QSqlDatabase::contains(conName))
-        db = QSqlDatabase::database(conName);
-    else
-    {
-        db = QSqlDatabase::addDatabase("QSQLITE", conName);
-        db.setDatabaseName(dName);
-
-        db.open();
-    }
-
+    db.open();
     QSqlQuery query(db);
 
     QString searchNerd = "SELECT * FROM People WHERE Name='"+QString::fromStdString(nerdName)+"'";

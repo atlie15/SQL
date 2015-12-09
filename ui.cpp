@@ -213,6 +213,8 @@ void UI::displayMenu()
 
 void UI::displayAddScientistMenu()
 {
+    cout << "Add Scientists" << endl;
+    cout << "-------------------------------------------------------------------" << endl;
     cout << "To add a scientist, type in:\n";
     cout << "Name,sex,yearBorn,yearDied (optional)\n";
     cout << "Comma separated like in the example above.\n\n";
@@ -222,6 +224,8 @@ void UI::displayAddScientistMenu()
 
 void UI::displayAddComputerMenu()
 {
+    cout << "Add Computers" << endl;
+    cout << "-------------------------------------------------------------------" << endl;
     cout << "To add a computer, type in:\n";
     cout << "Name,yearBuilt,type,made(y/n)\n";
     cout << "Comma separated like in the example above.\n\n";

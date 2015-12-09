@@ -193,7 +193,7 @@ void UI::displayAddScientistMenu()
 void UI::displayAddComputerMenu()
 {
     cout << "To add a computer, type in:\n";
-    cout << "Name,type,yearBuilt,made(y/n)\n";
+    cout << "Name,yearBuilt,type,made(y/n)\n";
     cout << "Comma separated like in the example above.\n\n";
     cout << "If you would like to go back to the main menu, please type: back\n";
     cout << "Input: ";

@@ -4,6 +4,7 @@
 #include <QSqlDatabase>
 #include <QString>
 #include <QSqlQuery>
+#include <iostream>
 
 using namespace std;
 
@@ -118,9 +119,9 @@ std::vector<Nerd> NerdSQL::searchForScientists(std::string searchTerm)
 
     QSqlQuery query(db);
 
-    QString search = "SELECT * FROM People WHERE *='"+QString::fromStdString(searchTerm)+"'";
-
-    QTextStream(stdout) << search << endl;
+    QString search = "SELECT * FROM People WHERE Name LIKE '%"+QString::fromStdString(searchTerm)
+            +"%' OR YearBorn LIKE '%"+QString::fromStdString(searchTerm)
+            +"%' OR YearDeath LIKE '%"+QString::fromStdString(searchTerm)+"%'";
 
     query.prepare(search);
     query.bindValue("Name", QString::fromStdString("*"));
@@ -157,7 +158,10 @@ std::vector<Computer> NerdSQL::searchForComputers(std::string searchTerm)
 
     QSqlQuery query(db);
 
-    query.prepare("SELECT * FROM Computers"+QString::fromStdString(searchTerm));
+    QString search = "SELECT * FROM Computers WHERE Name LIKE '%"+QString::fromStdString(searchTerm)
+                    +"%' OR Type LIKE '%"+QString::fromStdString(searchTerm)+"%'";
+
+    query.prepare(search);
     query.bindValue("Name", QString::fromStdString("*"));
 
     query.exec();

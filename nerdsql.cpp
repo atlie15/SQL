@@ -12,11 +12,6 @@ NerdSQL::NerdSQL()
 {
 }
 
-void NerdSQL::openDB()
-{
-
-}
-
 std::vector<Nerd> NerdSQL::getAllScientists(std::string orderBy, bool orderAscending)
 {
     vector<Nerd> ComputerScientists;

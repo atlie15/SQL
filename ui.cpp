@@ -269,10 +269,23 @@ void UI::displayConnectMenu(string userInput)
 
 void UI::displayConnections(std::vector<string> Connections)
 {
+    int counter = 0;
+    system("CLS");
+    cout << "Number\t  Scientist\t\tis connected to \t\tType" << endl;
+    cout << "\t--------------------------------------------------------------------" << endl;
     for (unsigned int i(0); i<Connections.size(); i+=2)
     {
-        cout << Connections.at(i) << "\t is connected to \t" << Connections.at(i+1) << endl;
+        string name = Connections.at(i);
+        name.resize(15, '\0');
+        string type = Connections.at(i+1);
+        type.resize(15, '\0');
+        cout << counter + 1 << "\t|";
+        cout << " " << name;
+        cout << "\t\t\t\t\t" << type << endl;
+        counter++;
     }
+    cout << endl << "Press enter to continue" << endl;
+    cin.get();
 }
 
 void UI::displayAddConnectMenu()

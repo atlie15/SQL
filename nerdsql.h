@@ -19,7 +19,9 @@ public:
     bool addScientist(Nerd nerd);
     bool addComputer(Computer computer);
     bool addConnection(std::string nerdName, std::string pcName);
-    void openDB();
+private:
+    std::string dbName;
+    std::string randomName;
 };
 
 #endif // NERDSQL_H

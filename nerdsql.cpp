@@ -109,6 +109,41 @@ std::vector<string> NerdSQL::getAllConnections(std::string sortBy, bool sortAsce
 {
     vector<string> Connections;
 
+    QSqlDatabase db;
+    db = QSqlDatabase::addDatabase("QSQLITE");
+
+    QString dbName = "../SQL/Scientists.sqlite";
+    db.setDatabaseName(dbName);
+
+    db.open();
+
+    QSqlQuery query(db);
+
+    QString Asc;
+    if(sortAscending)
+        Asc = " ASC";
+    else
+        Asc = " DESC";
+
+    QString order = "SELECT * FROM Connections Order By " + QString::fromStdString(sortBy) + Asc;
+
+
+    query.prepare(order);
+    query.bindValue("Name", QString::fromStdString("*"));
+
+    query.exec();
+
+    while(query.next()){
+        string sName = query.value("SName").toString().toStdString();
+        string cName = query.value("CName").toString().toStdString();
+
+        Connections.push_back(sName);
+        Connections.push_back(cName);
+    }
+
+    db.close();
+
+
     return Connections;
 }
 

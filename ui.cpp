@@ -241,7 +241,7 @@ void UI::displayConnectMenu(string userInput)
         sortBy = "SName";
         sortAscending = false;
     }
-    else if(userInput == "cname-desc")
+    else if(userInput == "cname-asc")
     {
         sortBy = "CName";
         sortAscending = true;
@@ -251,6 +251,12 @@ void UI::displayConnectMenu(string userInput)
         sortBy = "CName";
         sortAscending = false;
     }
+    else
+    {
+        cout << "There was an error: " << "\n";
+        cout << "Please try again or type 'back' to go back.\n\n";
+        return;
+    }
 
     vector<string> Connections = nerdService.getAllConnections(sortBy, sortAscending);
 
@@ -258,14 +264,14 @@ void UI::displayConnectMenu(string userInput)
 
     cout << '\n';
 
-    lastCommand = view;
+    lastCommand = connect;
 }
 
 void UI::displayConnections(std::vector<string> Connections)
 {
     for (unsigned int i(0); i<Connections.size(); i+=2)
     {
-        cout << Connections.at(i) << "    " << Connections.at(i+1) << endl;
+        cout << Connections.at(i) << "\t is connected to \t" << Connections.at(i+1) << endl;
     }
 }
 

@@ -23,6 +23,13 @@ std::vector<Computer> NerdService::getAllComputers(std::string orderBy, bool ord
     return Computers;
 }
 
+std::vector<string> NerdService::getAllConnections(std::string sortBy, bool sortAscending)
+{
+    vector<string> Connections = nerdSQL.getAllConnections(sortBy, sortAscending);
+
+    return Connections;
+}
+
 std::vector<Nerd>  NerdService::searchForScientists(std::string searchTerm)
 {
     return nerdSQL.searchForScientists(searchTerm);
@@ -43,4 +50,7 @@ bool NerdService::addComputer(Computer computer)
     return nerdSQL.addComputer(computer);
 }
 
-
+bool NerdService::addConnection(std::string nerdName, std::string pcName)
+{
+    return nerdSQL.addConnection(nerdName, pcName);
+}

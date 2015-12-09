@@ -13,6 +13,7 @@ UI::UI()
     sortBy = "name";
     sortAscending = true;
     isScientist = true;
+    isMaking = true;
 }
 
 int UI::start()
@@ -44,6 +45,12 @@ void UI::display()
                 displayAllScientists();
             else
                 displayAllComputers();
+            break;
+        case connect:
+            if(isMaking)
+                displayAddConnectMenu();
+            else
+                displayConnectSortMenu();
             break;
         case search:
             if(isScientist)
@@ -107,6 +114,17 @@ void UI::readInput()
         {
             addCommandHandler(userInput);
         }
+        else if (lastCommand == connect)
+        {
+            if(isMaking)
+            {
+                connectCommandHandler(userInput);
+            }
+            else
+            {
+                displayConnectMenu(userInput);
+            }
+        }
         else if (lastCommand == sort)
         {
             sortCommandHandler(userInput);
@@ -148,6 +166,19 @@ void UI::addCommandHandler(string userInput)
     }
 }
 
+void UI::connectCommandHandler(std::string userInput)
+{
+    if (addConnection(userInput)) {
+        cout << "Successfully made a connection.\n\n";
+        lastCommand = menu;
+    }
+    else
+    {
+        displayError("There was an error in your input.\n");
+    }
+}
+
+
 void UI::sortCommandHandler(string userInput)
 {
     if (setSort(userInput))
@@ -174,7 +205,6 @@ void UI::displayMenu()
     cout << "-----------------------------------------------------" << endl;
     cout << "\t  view: Show a list of every computer scientists" << endl;
     cout << "\t   add: Add computer scientist to the list" << endl;
-    cout << "\tremove: Remove computer scientist from the list" << endl;
     cout << "\tsearch: Search for scientists in the list" << endl;
     cout << "\t  quit: Quit program" << endl;
     cout << endl;
@@ -198,6 +228,57 @@ void UI::displayAddComputerMenu()
     cout << "If you would like to go back to the main menu, please type: back\n";
     cout << "Input: ";
 }
+
+void UI::displayConnectMenu(string userInput)
+{
+    if(userInput == "sname-asc")
+    {
+        sortBy = "SName";
+        sortAscending = true;
+    }
+    else if(userInput == "sname-desc")
+    {
+        sortBy = "SName";
+        sortAscending = false;
+    }
+    else if(userInput == "cname-desc")
+    {
+        sortBy = "CName";
+        sortAscending = true;
+    }
+    else if(userInput == "cname-desc")
+    {
+        sortBy = "CName";
+        sortAscending = false;
+    }
+
+    vector<string> Connections = nerdService.getAllConnections(sortBy, sortAscending);
+
+    displayConnections(Connections);
+
+    cout << '\n';
+
+    lastCommand = view;
+}
+
+void UI::displayConnections(std::vector<string> Connections)
+{
+    for (unsigned int i(0); i<Connections.size(); i+=2)
+    {
+        cout << Connections.at(i) << "    " << Connections.at(i+1) << endl;
+    }
+}
+
+void UI::displayAddConnectMenu()
+{
+    cout << "L'ettur header\n";
+    cout << "To add connection, type in:\n";
+    cout << "Name_of_scientist,Name_of_computer\n";
+    cout << "Comma separated like in the example above.\n\n";
+    cout << "If you would like to go back to the main menu, please type: back\n";
+    cout << "Input: ";
+}
+
 
 bool UI::displaySearch()
 {
@@ -247,6 +328,7 @@ bool UI::displayAdd()
     cout << "-----------------------------------------------------" << endl;
     cout << "\tscientists: Add Scientist" << endl;
     cout << "\t computers: Add Computer" << endl;
+    cout << "\t   connect: Add Connection" << endl;
     cout << "\t      back: Return to main menu" << endl;
     cout << "\t      quit: Exit program" << endl;
 
@@ -265,6 +347,12 @@ bool UI::displayAdd()
     {
         isScientist=false;
         return true;
+    }
+    else if(userInput == "connect")
+    {
+        isMaking = true;
+        lastCommand = connect;
+        return false;
     }
     else if(userInput == "back")
     {
@@ -289,6 +377,7 @@ bool UI::displayChoose()
     cout << "-----------------------------------------------------" << endl;
     cout << "\tscientists: Display Scientists" << endl;
     cout << "\t computers: Display Computers" << endl;
+    cout << "\t   connect: Display Connections" << endl;
     cout << "\t      back: Return to main menu" << endl;
     cout << "\t      quit: Exit program" << endl;
 
@@ -312,6 +401,12 @@ bool UI::displayChoose()
     else if(userInput == "back")
     {
         lastCommand = menu;
+        return false;
+    }
+    else if(userInput == "connect")
+    {
+        isMaking = false;
+        lastCommand = connect;
         return false;
     }
     else if(userInput == "quit")
@@ -468,6 +563,21 @@ void UI::displayComputerSortMenu()
     cout << "Command: ";
 }
 
+void UI::displayConnectSortMenu()
+{
+    cout << "How would you like to view the list of Connections?" << endl;
+    cout << "-----------------------------------------------------" << endl;
+    cout << "\tsname-asc: Scientist name in alphabetical order [A-Z] " << endl;
+    cout << "\tsname-desc: Scientist name in alphabetical order [Z-A]" << endl;
+    cout << "\tcname-asc: Computer name in alphabetical order [A-Z] " << endl;
+    cout << "\tcname-desc: Computer name in alphabetical order [Z-A]" << endl;
+    cout << "\t     back: Back to main menu." << endl;
+    cout << "\t     quit: Exit program" << endl;
+    cout << endl;
+
+    cout << "Command: ";
+}
+
 void UI::displayUnknownCommandMenu()
 {
     displayError("Unknown command");
@@ -498,6 +608,21 @@ bool UI::addScientist(string data)
 
             return nerdService.addScientist(Nerd(name, sex, yearBorn, yearDied));
         }
+    }
+
+    return false;
+}
+
+bool UI::addConnection(string data)
+{
+    vector<string> fields = utils::splitString(data, ',');
+
+    if (fields.size() == 2)
+    {
+        string nerdName = fields.at(0);
+        string pcName = fields.at(1);
+
+        return nerdService.addConnection(nerdName, pcName);
     }
 
     return false;

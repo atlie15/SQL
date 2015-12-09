@@ -105,6 +105,13 @@ std::vector<Computer> NerdSQL::getAllComputers(std::string orderBy, bool orderAs
     return Computers;
 }
 
+std::vector<string> NerdSQL::getAllConnections(std::string sortBy, bool sortAscending)
+{
+    vector<string> Connections;
+
+    return Connections;
+}
+
 std::vector<Nerd> NerdSQL::searchForScientists(std::string searchTerm)
 {
     vector<Nerd> ComputerScientists;
@@ -240,3 +247,58 @@ bool NerdSQL::addComputer(Computer computer)
     return true;
 }
 
+bool NerdSQL::addConnection(std::string nerdName, std::string pcName)
+{
+    vector<string> Connections;
+
+    QSqlDatabase db;
+    db = QSqlDatabase::addDatabase("QSQLITE");
+
+    QString dbName = "../SQL/Scientists.sqlite";
+    db.setDatabaseName(dbName);
+
+    db.open();
+
+    QSqlQuery query(db);
+
+    QString searchNerd = "SELECT * FROM People WHERE Name='"+QString::fromStdString(nerdName)+"'";
+    query.prepare(searchNerd);
+    query.bindValue("Name", QString::fromStdString("*"));
+    query.exec();
+
+    while(query.next()){
+        string name = query.value("Name").toString().toStdString();
+        Connections.push_back(name);
+    }
+
+    QString searchPC = "SELECT * FROM Computers WHERE Name='"+QString::fromStdString(pcName)+"'";
+    query.prepare(searchPC);
+    query.bindValue("Name", QString::fromStdString("*"));
+    query.exec();
+
+    while(query.next()){
+        string name = query.value("Name").toString().toStdString();
+
+        Connections.push_back(name);
+    }
+/*
+    for(unsigned int i(0); i<Connections.size(); i++)
+    {
+        cout << Connections.at(i) << endl;
+    }
+
+    cin.get();
+*/
+    if(Connections.size()!=2)
+        return false;
+    else
+    {
+        query.prepare("INSERT INTO Connections(SName, CName) "
+                      "VALUES (:SName, :CName)");
+        query.bindValue(":SName", QString::fromStdString(Connections.at(0)));
+        query.bindValue(":CName", QString::fromStdString(Connections.at(1)));
+        query.exec();
+    }
+
+    return true;
+}

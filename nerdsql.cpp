@@ -368,14 +368,7 @@ bool NerdSQL::addConnection(std::string nerdName, std::string pcName)
 
         Connections.push_back(name);
     }
-/*
-    for(unsigned int i(0); i<Connections.size(); i++)
-    {
-        cout << Connections.at(i) << endl;
-    }
 
-    cin.get();
-*/
     if(Connections.size()!=2)
         return false;
     else

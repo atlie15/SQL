@@ -174,7 +174,7 @@ void UI::connectCommandHandler(std::string userInput)
     }
     else
     {
-        displayError("There was an error in your input.\n");
+        displayError("The input did not relate to a Scientist or Computer.\n");
     }
 }
 
